@@ -45,7 +45,7 @@ const MealsList = () => {
                 const isEven = (row + column) % 2 === 0;
 
                 return (
-                    <Link to={`/${recipe.strCategory}/${recipe.idMeal}`}>
+                    <Link to={`/${params.category?.toLowerCase()}/${recipe.idMeal}`}>
                         <div
                             key={index}
                             className="categories-card"
