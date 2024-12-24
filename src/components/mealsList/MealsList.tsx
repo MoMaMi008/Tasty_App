@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IMeals } from "../../../interface/IMeals";
 import "./MealsList.css";
+import { ICategories } from "../../../interface/ICategories";
 
 const MealsList = () => {
     const [recipes, setRecipes] = useState<IMeals[]>([]);
@@ -9,12 +10,17 @@ const MealsList = () => {
 
     const params = useParams();
 
+
+
     useEffect(() => {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.category}`)
             .then((res) => res.json())
             .then((data) => {
-                setRecipes(data.meals);
-                console.log(data.meals);
+                const mealsWithCategory = data.meals.map((meal: IMeals) => ({
+                    ...meal,
+                    strCategory: params.category as ICategories["strCategory"],
+                })) as IMeals[];
+                setRecipes(mealsWithCategory);
             })
             .catch((err) => console.log(err));
     }, [params.category]);
