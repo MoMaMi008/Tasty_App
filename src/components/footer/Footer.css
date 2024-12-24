@@ -1,0 +1,14 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.footer div{
+    display: flex;
+    gap: 12px;
+}
+
+.footer div a img{
+    width: 50%;
+}

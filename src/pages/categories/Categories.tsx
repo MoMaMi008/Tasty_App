@@ -1,13 +1,13 @@
-import CategoriesList from "../../components/categoriesList/CategoriesList";
-import './Categories.css';
+import MealsList from "../../components/mealsList/MealsList";
+import "./Categories.css";
 
 const Categories = () => {
     return (
-        <section className="categories">
+        <section className="meals">
             <h1>Everything Beef</h1>
-            <CategoriesList />
+            <MealsList />
         </section>
     );
-}
+};
 
 export default Categories;

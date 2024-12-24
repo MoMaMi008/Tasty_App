@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { IMeals } from '../../../interface/IMeals';
-import './CategoriesList.css';
+import { useParams } from "react-router-dom";
+import { IMeals } from "../../../interface/IMeals";
+import "./MealsList.css";
 
-const CategoriesList = () => {
+const MealsList = () => {
     const [recipes, setRecipes] = useState<IMeals[]>([]);
     const [columns, setColumns] = useState(0);
 
@@ -13,27 +13,26 @@ const CategoriesList = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef`)
             .then((res) => res.json())
             .then((data) => {
-                setRecipes(data.meals)
+                setRecipes(data.meals);
                 console.log(data.meals);
-
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }, []);
 
     useEffect(() => {
         const updateColumns = () => {
-            const container = document.querySelector('.categories-list');
+            const container = document.querySelector(".categories-list");
             if (container) {
                 const computedStyle = getComputedStyle(container);
-                const columnCount = computedStyle.getPropertyValue('grid-template-columns').split(' ').length;
+                const columnCount = computedStyle.getPropertyValue("grid-template-columns").split(" ").length;
                 setColumns(columnCount);
             }
         };
 
-        window.addEventListener('resize', updateColumns);
+        window.addEventListener("resize", updateColumns);
         updateColumns();
 
-        return () => window.removeEventListener('resize', updateColumns);
+        return () => window.removeEventListener("resize", updateColumns);
     }, []);
 
     return (
@@ -44,13 +43,12 @@ const CategoriesList = () => {
                 const isEven = (row + column) % 2 === 0;
 
                 return (
-
                     // <Link to={`/categories/${meal}/${recipe.idMeal}`}>
                     <div
                         key={index}
                         className="categories-card"
                         style={{
-                            backgroundColor: isEven ? '#D4DFC7' : '#96C0B7',
+                            backgroundColor: isEven ? "#D4DFC7" : "#96C0B7",
                         }}
                     >
                         <p>{recipe.strMeal}</p>
@@ -61,6 +59,6 @@ const CategoriesList = () => {
             })}
         </article>
     );
-}
+};
 
-export default CategoriesList;
+export default MealsList;
