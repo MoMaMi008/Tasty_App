@@ -1,0 +1,14 @@
+.searchResult {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-direction: column;
+    gap: 20px;
+}
+.searchResult a {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.searchResult img {
+    height: 20vh;
+}
