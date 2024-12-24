@@ -1,0 +1,52 @@
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+
+.grid-layout div{
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+.grid-layout div img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 25%;
+    margin-bottom: 12px;
+  }
+
+  .grid-layout div p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4b5c5b;
+  }
+
+.odd {
+    background-color: #D4DFC7;
+    margin: 5px;
+    box-sizing: border-box;
+    max-width: 33vw;
+  }
+  
+.even {
+    background-color: #96C0B7;
+    margin: 5px;
+    box-sizing: border-box;
+    max-width: 33vw;
+  }
+
+  @media (max-width: 1024px) {
+    .grid-layout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* merry chrismis :) */
