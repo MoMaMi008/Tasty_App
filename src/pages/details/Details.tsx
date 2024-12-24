@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 
 interface Meal {
     idMeal: string;
@@ -81,6 +82,7 @@ const Details = () => {
             <>
                 <Header />
                 <section>
+                    <img src={fetchedData.strMealThumb} alt="picture of meal" />
                     <article>
                         <h2>{fetchedData.strMeal}</h2>
                         <ul>{fetchedData.strInstructions.split(".").map((step) => step != "" && <li>{step}</li>)}</ul>
@@ -95,6 +97,7 @@ const Details = () => {
                         <button>Watch on YouTube</button>
                     </article>
                 </section>
+                <Footer />
             </>
         );
     }

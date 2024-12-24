@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IMeals } from "../../../interface/IMeals";
 import "./MealsList.css";
 
@@ -7,17 +7,17 @@ const MealsList = () => {
     const [recipes, setRecipes] = useState<IMeals[]>([]);
     const [columns, setColumns] = useState(0);
 
-    const { meal } = useParams();
+    const params = useParams();
 
     useEffect(() => {
-        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef`)
+        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.category}`)
             .then((res) => res.json())
             .then((data) => {
                 setRecipes(data.meals);
                 console.log(data.meals);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [params.category]);
 
     useEffect(() => {
         const updateColumns = () => {
@@ -35,6 +35,8 @@ const MealsList = () => {
         return () => window.removeEventListener("resize", updateColumns);
     }, []);
 
+    console.log(recipes.map((recipe) => recipe.strCategory));
+
     return (
         <article className="categories-list">
             {recipes?.map((recipe, index) => {
@@ -43,18 +45,18 @@ const MealsList = () => {
                 const isEven = (row + column) % 2 === 0;
 
                 return (
-                    // <Link to={`/categories/${meal}/${recipe.idMeal}`}>
-                    <div
-                        key={index}
-                        className="categories-card"
-                        style={{
-                            backgroundColor: isEven ? "#D4DFC7" : "#96C0B7",
-                        }}
-                    >
-                        <p>{recipe.strMeal}</p>
-                        <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-                    </div>
-                    // </Link>
+                    <Link to={`/${recipe.strCategory}/${recipe.idMeal}`}>
+                        <div
+                            key={index}
+                            className="categories-card"
+                            style={{
+                                backgroundColor: isEven ? "#D4DFC7" : "#96C0B7",
+                            }}
+                        >
+                            <p>{recipe.strMeal}</p>
+                            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+                        </div>
+                    </Link>
                 );
             })}
         </article>
