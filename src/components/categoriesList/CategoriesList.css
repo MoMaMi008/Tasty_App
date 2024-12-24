@@ -1,0 +1,25 @@
+.categories-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    gap: 2rem;
+    padding: 20px;
+}
+
+.categories-card {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 30px 25px;
+    color: white;
+    border-radius: 20px;
+}
+
+.categories-card p {
+    font-size: 1.3rem;
+}
+
+.categories-card img {
+    border-radius: 10px;
+}
