@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import "./Details.css"
 
 interface Meal {
     idMeal: string;
@@ -53,13 +54,15 @@ interface Meal {
     strMeasure19?: string;
     strMeasure20?: string;
     [key: `strIngredient${number}`]: string | undefined;
+    [key: `strMeasure${number}`]: string | undefined;
 }
 
 const Details = () => {
     const [fetchedData, setFetchedData] = useState<Meal | undefined>(undefined);
     const params = useParams();
 
-    const ingredients = [];
+    const ingredients: string[] = [];
+    const measures: string[] = [];
 
     useEffect(() => {
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.mealID}`)
@@ -72,16 +75,19 @@ const Details = () => {
         for (let i = 1; i <= 20; i++) {
             const ingredient = fetchedData[`strIngredient${i}`];
             console.log(ingredient);
+            const measure = fetchedData[`strMeasure${i}`];
+            console.log(measure);
 
-            if (ingredient) {
+            if (ingredient && measure) {
                 ingredients.push(ingredient);
+                measures.push(measure);
             }
         }
 
         return (
             <>
                 <Header />
-                <section>
+                <section className="details">
                     <img src={fetchedData.strMealThumb} alt="picture of meal" />
                     <article>
                         <h2>{fetchedData.strMeal}</h2>
@@ -90,11 +96,11 @@ const Details = () => {
                     <article>
                         <h2>Ingredients</h2>
                         <ul>
-                            {ingredients.map((ingredient) => (
-                                <li>{ingredient}</li>
+                            {ingredients.map((ingredient, index) => (
+                                <li>{measures[index]} {ingredient}</li>
                             ))}
                         </ul>
-                        <button>Watch on YouTube</button>
+                        <a href={fetchedData.strYoutube}>Watch on YouTube</a>
                     </article>
                 </section>
                 <Footer />

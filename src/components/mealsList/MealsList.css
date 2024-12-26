@@ -1,25 +1,29 @@
 .categories-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-    gap: 2rem;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    align-items: stretch;
 }
 
 .categories-card {
-    max-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
-    padding: 30px 25px;
+    padding: 25px 20px;
     color: white;
     border-radius: 20px;
+    background-color: #d4dfc7;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 .categories-card p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .categories-card img {
     border-radius: 10px;
+    max-height: 150px;
+    object-fit: cover;
 }

@@ -1,4 +1,9 @@
+.meals {
+    padding: 0 2vw;
+}
+
 .meals h1 {
     color: #96c0b7;
-    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
